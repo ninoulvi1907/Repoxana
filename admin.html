@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="az">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repoxana Admin</title>
+    <link rel="icon" type="image/png" href="./repoxana_logo_square_3762.png">
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <div class="page-shell"></div>
+    <main class="wrap">
+      <section id="loginSection" class="hero auth-shell">
+        <div class="hero-top">
+          <div class="brand-block">
+            <a href="./index.html" aria-label="Ana səhifəyə qayıt">
+              <img class="brand-logo" src="./repoxana_logo_square_3762.png" alt="Repoxana logo">
+            </a>
+            <div>
+              <span class="badge">Admin girişi</span>
+              <h1>Repoxana Admin</h1>
+              <p class="sub">Admin panelə daxil olmaq üçün email və kodu yazın.</p>
+            </div>
+          </div>
+        </div>
+
+        <form id="loginForm" class="auth-form">
+          <label class="form-group">
+            <span>Email</span>
+            <input id="loginEmailInput" class="field" type="email" value="azeulvifarajli@gmail.com" required>
+          </label>
+
+          <label class="form-group">
+            <span>Kod</span>
+            <input id="loginPasswordInput" class="field" type="password" required placeholder="Admin kodu">
+          </label>
+
+          <div class="form-actions">
+            <button class="primary-link button-like" type="submit">Daxil ol</button>
+            <a class="ghost-button admin-link" href="./index.html">Ana səhifə</a>
+          </div>
+          <p id="loginStatus" class="status">Yalnız admin girişi üçün nəzərdə tutulub.</p>
+        </form>
+      </section>
+
+      <section id="adminApp" class="hidden">
+        <section class="hero">
+          <div class="hero-top">
+            <div class="brand-block">
+              <a href="./index.html" aria-label="Ana səhifəyə qayıt">
+                <img class="brand-logo" src="./repoxana_logo_square_3762.png" alt="Repoxana logo">
+              </a>
+              <div>
+                <span class="badge">Repo idarəetmə paneli</span>
+                <h1>Admin</h1>
+                <p class="sub">Repo əlavə edin, redaktə edin, şəkil yükləyin və əsas səhifədə göstərin.</p>
+              </div>
+            </div>
+            <div class="hero-actions">
+              <p class="source-note">Email: <span>azeulvifarajli@gmail.com</span></p>
+              <div class="panel-actions">
+                <button id="logoutButton" class="ghost-button" type="button">Çıxış</button>
+                <a class="ghost-button admin-link" href="./index.html">Ana səhifə</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="grid admin-grid">
+          <article class="panel">
+            <header class="panel-head">
+              <h2 class="panel-title">Repo formu</h2>
+              <button id="clearFormButton" class="ghost-button" type="button">Yeni forma</button>
+            </header>
+            <div class="viewer">
+              <form id="repoForm" class="admin-form">
+                <input id="repoSlug" type="hidden">
+
+                <label class="form-group">
+                  <span>Repo adı</span>
+                  <input id="titleInput" class="field" type="text" required placeholder="Məsələn: Nextcloud">
+                </label>
+
+                <label class="form-group">
+                  <span>GitHub linki</span>
+                  <input id="githubUrlInput" class="field" type="url" required placeholder="https://github.com/...">
+                </label>
+
+                <div class="form-group">
+                  <span>Repo şəkilləri</span>
+                  <label class="upload-dropzone" for="imagesInput">
+                    <strong>Şəkil seçin</strong>
+                    <span>Ən azı 1 şəkil əlavə edin. JPG, PNG və WebP dəstəklənir.</span>
+                  </label>
+                  <input id="imagesInput" type="file" accept="image/*" multiple hidden>
+                  <div id="imagePreviewList" class="image-preview-list"></div>
+                </div>
+
+                <div class="form-row">
+                  <label class="form-group">
+                    <span>Kateqoriya</span>
+                    <input id="categoryInput" class="field" type="text" required placeholder="Business">
+                  </label>
+
+                  <label class="form-group">
+                    <span>Ulduz sayı</span>
+                    <input id="starsInput" class="field" type="number" min="0" step="1" placeholder="32000">
+                  </label>
+                </div>
+
+                <div class="form-row">
+                  <label class="form-group">
+                    <span>Müəllif / təşkilat</span>
+                    <input id="ownerInput" class="field" type="text" placeholder="Nextcloud GmbH">
+                  </label>
+
+                  <label class="form-group">
+                    <span>Əsas dil</span>
+                    <input id="languageInput" class="field" type="text" placeholder="PHP">
+                  </label>
+                </div>
+
+                <div class="form-row">
+                  <label class="form-group">
+                    <span>Lisenziya</span>
+                    <input id="licenseInput" class="field" type="text" placeholder="AGPL-3.0">
+                  </label>
+
+                  <label class="form-group">
+                    <span>Çətinlik</span>
+                    <input id="difficultyInput" class="field" type="text" placeholder="Orta">
+                  </label>
+                </div>
+
+                <div class="form-row">
+                  <label class="form-group">
+                    <span>Platforma</span>
+                    <input id="platformInput" class="field" type="text" placeholder="Web, Server">
+                  </label>
+
+                  <label class="form-group">
+                    <span>İstifadə sahəsi</span>
+                    <input id="useCaseInput" class="field" type="text" placeholder="Fayl paylaşımı, komanda işi">
+                  </label>
+                </div>
+
+                <div class="form-row">
+                  <label class="form-group">
+                    <span>Demo linki</span>
+                    <input id="demoUrlInput" class="field" type="url" placeholder="https://demo.example.com">
+                  </label>
+
+                  <label class="form-group">
+                    <span>Sənəd linki</span>
+                    <input id="docsUrlInput" class="field" type="url" placeholder="https://docs.example.com">
+                  </label>
+                </div>
+
+                <label class="form-group">
+                  <span>Texnologiyalar</span>
+                  <input id="stackInput" class="field" type="text" placeholder="PHP, JavaScript, Docker">
+                </label>
+
+                <label class="form-group">
+                  <span>Azərbaycan dilində izah</span>
+                  <textarea id="descriptionInput" class="field area large" required placeholder="Repo nə edir, kimə uyğundur, necə istifadə olunur"></textarea>
+                </label>
+
+                <label class="form-group">
+                  <span>Əsas imkanlar</span>
+                  <textarea id="featuresInput" class="field area" placeholder="• AI ilə komiks səhifələri yaratmaq"></textarea>
+                </label>
+
+                <label class="form-group">
+                  <span>Nə üçün istifadə olunur?</span>
+                  <textarea id="purposeInput" class="field area" placeholder="• AI komiks yaratmaq"></textarea>
+                </label>
+
+                <label class="form-group">
+                  <span>Texnologiyalar</span>
+                  <textarea id="technologiesInput" class="field area" placeholder="• Next.js 16"></textarea>
+                </label>
+
+                <label class="form-group">
+                  <span>Üstünlükləri</span>
+                  <textarea id="advantagesInput" class="field area" placeholder="✅ Müasir texnologiya stack-i var"></textarea>
+                </label>
+
+                <label class="form-group">
+                  <span>Çatışmazlıqları</span>
+                  <textarea id="drawbacksInput" class="field area" placeholder="❌ API key-lər lazımdır"></textarea>
+                </label>
+
+                <label class="form-group">
+                  <span>Kimlər üçün uyğundur?</span>
+                  <textarea id="audienceInput" class="field area" placeholder="• AI layihələri ilə maraqlanan developer-lər"></textarea>
+                </label>
+
+                <label class="form-group">
+                  <span>Quraşdırma / başlanğıc addımları</span>
+                  <textarea id="installationInput" class="field area" placeholder="npm install, docker compose up və s."></textarea>
+                </label>
+
+                <label class="form-group">
+                  <span>Qeyd və tövsiyə</span>
+                  <textarea id="notesInput" class="field area" placeholder="Əlavə qeyd, xəbərdarlıq və ya tövsiyə"></textarea>
+                </label>
+
+                <div class="form-actions">
+                  <button class="primary-link button-like" type="submit">Yadda saxla</button>
+                  <button id="clearImagesButton" class="ghost-button" type="button">Şəkilləri sil</button>
+                  <button id="deleteButton" class="ghost-button" type="button" disabled>Sil</button>
+                </div>
+              </form>
+            </div>
+          </article>
+
+          <article class="panel">
+            <header class="panel-head">
+              <h2 class="panel-title">Mövcud repolar</h2>
+              <div class="panel-actions">
+                <button id="exportButton" class="ghost-button" type="button">JSON export</button>
+                <label class="ghost-button upload-button" for="importInput">JSON import</label>
+                <input id="importInput" type="file" accept="application/json" hidden>
+              </div>
+            </header>
+            <div id="adminStatus" class="admin-status">Hazırdır.</div>
+            <div id="adminRepoList" class="results"></div>
+          </article>
+        </section>
+      </section>
+    </main>
+
+    <script src="./repos.js"></script>
+    <script src="./storage.js"></script>
+    <script src="./admin.js"></script>
+  </body>
+</html>

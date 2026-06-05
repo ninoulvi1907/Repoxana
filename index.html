@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="az">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repoxana</title>
+    <link rel="icon" type="image/png" href="./repoxana_logo_square_3762.png">
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <div class="page-shell"></div>
+    <main class="wrap">
+      <section class="hero">
+          <div class="hero-top">
+            <div class="brand-block">
+            <a href="./index.html" aria-label="Ana səhifəyə qayıt">
+              <img class="brand-logo" src="./repoxana_logo_square_3762.png" alt="Repoxana logo">
+            </a>
+            <div>
+              <span class="badge">Azərbaycan dilində GitHub repo kataloqu</span>
+              <h1>Repoxana</h1>
+              <p class="sub">Repo axtar və seçilmiş repoya bax.</p>
+            </div>
+          </div>
+          <div class="hero-actions">
+            <div class="hero-nav">
+              <button id="homeButton" class="ghost-button hidden" type="button">Ana səhifə</button>
+            </div>
+          </div>
+        </div>
+
+        <form id="searchForm" class="search-controls">
+          <input id="searchInput" class="field" type="search" placeholder="Repo adı, texnologiya və ya açıqlama axtarın...">
+          <select id="categorySelect" aria-label="Kateqoriya seç">
+            <option value="all">Bütün kateqoriyalar</option>
+          </select>
+          <select id="sortSelect" aria-label="Sıralama seç">
+            <option value="featured">Sıralama: Seçilmiş</option>
+            <option value="stars-desc">Sıralama: Ən çox ulduzlu</option>
+            <option value="title-asc">Sıralama: A-dan Z-yə</option>
+            <option value="title-desc">Sıralama: Z-dən A-ya</option>
+          </select>
+          <button class="primary-link button-like search-button" type="submit">Axtar</button>
+        </form>
+
+        <p id="statusText" class="status">Günün seçilmiş reposu aşağıdadır.</p>
+      </section>
+
+      <section id="introSections" class="info-grid">
+        <article class="panel info-card">
+          <div class="viewer">
+            <h2>💻 GitHub nədir?</h2>
+            <p class="description">GitHub proqramçıların kod paylaşdığı, layihələri birlikdə inkişaf etdirdiyi və open-source dünyasının mərkəzi hesab olunan platformadır.</p>
+            <p class="description description-spaced">Burada:</p>
+            <div class="description description-rich">
+              • Kod yaza bilərsən<br>
+              • Layihələri host edə bilərsən<br>
+              • Başqa developer-lərin reposuna baxa bilərsən<br>
+              • Open-source layihələrə contribution edə bilərsən<br>
+              • Öz portfolio-nu qura bilərsən<br>
+              • Minlərlə faydalı tool və AI layihəsi tapa bilərsən
+            </div>
+            <p class="description description-spaced">GitHub həm də Git adlı version control sisteminin üzərində qurulub. Bu sayədə kod dəyişikliklərini izləmək, komandada işləmək və layihələri idarə etmək çox rahat olur 🚀</p>
+            <p class="description description-spaced">Bu gün istifadə etdiyin bir çox məşhur texnologiya:</p>
+            <div class="description description-rich">
+              • React<br>
+              • Next.js<br>
+              • TensorFlow<br>
+              • Linux<br>
+              • VS Code
+            </div>
+            <p class="description description-spaced">hamısı GitHub üzərində open-source şəkildə inkişaf etdirilir.</p>
+          </div>
+        </article>
+
+        <article class="panel info-card">
+          <div class="viewer">
+            <h2>📦 Repository nədir?</h2>
+            <p class="description">Repository (repo) layihənin bütün kodlarının, fayllarının və versiyalarının saxlanıldığı yerdir.</p>
+            <p class="description description-spaced">Sadə dildə: <strong>repo = layihənin əsas qovluğu 💙</strong></p>
+            <p class="description description-spaced">Burada:</p>
+            <div class="description description-rich">
+              • Kod faylları saxlanılır<br>
+              • README və dokumentasiya yerləşir<br>
+              • Şəkillər və digər resurslar olur<br>
+              • Commit tarixçəsi saxlanılır<br>
+              • Layihənin bütün dəyişiklikləri izlənilir<br>
+              • Developer-lər birlikdə işləyə bilir
+            </div>
+            <p class="description description-spaced">Məsələn:</p>
+            <div class="description description-rich">
+              • Bir website<br>
+              • Mobil tətbiq<br>
+              • AI layihəsi<br>
+              • Discord botu<br>
+              • API sistemi
+            </div>
+            <p class="description description-spaced">hamısı bir repository içində yerləşə bilər 🚀</p>
+            <p class="description description-spaced">GitHub üzərində gördüyün hər layihə əslində bir repository-dir. Məsələn:</p>
+            <div class="description description-rich">
+              • React<br>
+              • Next.js<br>
+              • TensorFlow<br>
+              • Linux
+            </div>
+            <p class="description description-spaced">bunların hamısının öz reposu var 💻</p>
+          </div>
+        </article>
+      </section>
+
+      <section id="resultsSection" class="results-section hidden">
+        <section id="repoList" class="repo-stack" aria-live="polite"></section>
+      </section>
+
+      <article id="featuredSection" class="panel viewer-panel">
+        <div id="repoDetail" class="viewer"></div>
+      </article>
+    </main>
+
+    <script src="./repos.js"></script>
+    <script src="./storage.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
