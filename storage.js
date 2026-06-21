@@ -1,5 +1,5 @@
 (function () {
-  const STORAGE_KEY = "repoxana-data-v19";
+  const STORAGE_KEY = "repoxana-data-v24";
 
   function cloneDefaultRepos() {
     return (Array.isArray(window.repoLibrary) ? window.repoLibrary : []).map((repo) => ({ ...repo }));
@@ -65,7 +65,21 @@
         return cloneDefaultRepos();
       }
 
-      return parsed.map(normalizeRepo);
+      const defaultsBySlug = new Map(
+        cloneDefaultRepos().map((repo) => [repo.slug, repo])
+      );
+
+      return parsed.map(normalizeRepo).map((repo) => {
+        const latest = defaultsBySlug.get(repo.slug);
+        if (!latest) {
+          return repo;
+        }
+
+        return {
+          ...repo,
+          stars: Math.max(0, Number(latest.stars) || 0)
+        };
+      });
     } catch (error) {
       return cloneDefaultRepos();
     }
